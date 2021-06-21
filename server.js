@@ -4,6 +4,9 @@ const cors = require('cors');
 const mysql = require('mysql');
 
 
+
+
+
 PORT = 8082;
 
 let db = mysql.createConnection({
@@ -55,6 +58,33 @@ app.get('/init', function(req, res){
   res.end('success')
 })
 
+app.get('/lboard1', (req, res) => {
+  const sqlSelect = "SELECT Name, Tamt_donated FROM user_info ORDER BY Tamt_donated DESC limit 0,1";
+  db.query(sqlSelect, (err, result)=> {
+    //res.send(result);
+    result = JSON.stringify(result)
+    console.log(result)
+  });
+  res.end()
+});
+
+app.get('/lboard2', (req, res) => {
+  const sqlSelect = "SELECT Name, Tamt_donated FROM user_info ORDER BY Tamt_donated DESC limit 1,1";
+  db.query(sqlSelect, (err, result)=> {
+    //res.send(result);
+    console.log("successread")
+  });
+  res.end()
+});
+
+app.get('/lboard3', (req, res) => {
+  const sqlSelect = "SELECT Name, Tamt_donated FROM user_info ORDER BY Tamt_donated DESC limit 2,1";
+  db.query(sqlSelect, (err, result)=> {
+    //res.send(result);
+    console.log("successread")
+  });
+  res.end()
+});
 /*
 app.get("/", (req, res) => {
   db.connect(function(err) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -9,6 +9,7 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import red from '@material-ui/core/colors/red';
+import Axios from "axios";
 
 const ColorButton = withStyles((theme) => ({
     root: {
@@ -63,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const tiers = [
   {
     img: 'img/team/01.jpg',
@@ -85,9 +87,9 @@ const tiers = [
     price: '1st',
     description: [
       'Lorem Ipsum 1', 
-        'Lorem Ipsum 2', 
-        'Lorem Ipsum 3',
-        'Lorem Ipsum 4',
+      'Lorem Ipsum 2', 
+      'Lorem Ipsum 3',
+      'Lorem Ipsum 4',
     ],
     option: '/month',
     buttonText: 'Get started',
@@ -111,6 +113,16 @@ const tiers = [
 
 export const Leaderboard = (props) => {
   const classes = useStyles();
+  const [name, setName] = useState("")
+  const [amt, setAmt] = useState(0)
+
+  const [movieReviewList, setMovieList] = useState([])
+
+  useEffect(()=> {
+    Axios.get('http:localhost:8082/lboard1').then((response)=> {
+      setMovieList(response.data)
+    })
+  }, [])
 
   return (
       <> 

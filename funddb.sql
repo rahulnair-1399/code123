@@ -122,7 +122,7 @@ VALUES
     `Tamt_gained` int(10) NOT NULL DEFAULT 0
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE TABLE `initial_signup` (
-    `email` varchar(100) NOT NULL,
+    `email` varchar(100) NOT NULL UNIQUE,
     `Create_pw` text NOT NULL,
     `Confirm_pw` text NOT NULL
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
